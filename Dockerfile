@@ -32,10 +32,6 @@ RUN apt-get -y update && \
     opam \
     m4
 
-# Clean up apt
-RUN apt-get remove --purge -y $BUILD_PACKAGES $(apt-mark showauto) && \
-    rm -rf /var/lib/apt/lists/*
-
 # Set up filesystem
 USER root
 
