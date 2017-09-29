@@ -59,4 +59,4 @@ EXPOSE 8011
 
 # Start Liquidsoap. If you have tasks you need to do before this happens, create a /home/liquidsoap/pre-launch.sh
 # file to have the contents executed first.
-ENTRYPOINT /home/liquidsoap/launch.sh"
+ENTRYPOINT /home/liquidsoap/launch.sh
