@@ -56,4 +56,4 @@ EXPOSE 8080
 EXPOSE 8011
 
 # We'll start Liquidsoap with a default file, which must be mounted from the host at runtime or other suitable provider
-ENTRYPOINT /home/liquidsoap/.opam/system/bin/liquidsoap $LIQUIDSOAP_SCRIPT"
+ENTRYPOINT /home/liquidsoap/.opam/system/bin/liquidsoap $LIQUIDSOAP_SCRIPT
