@@ -32,17 +32,16 @@ RUN apt-get -y update && \
     opam \
     m4
 
-# Set up filesystem
+# Set up filesystem and user
 USER root
-
+RUN useradd -m liquidsoap
 RUN mkdir /var/log/liquidsoap
 RUN chown -R liquidsoap:liquidsoap /var/log/liquidsoap
 RUN chmod 766 /var/log/liquidsoap
 
 RUN mkdir /etc/liquidsoap && mkdir /etc/liquidsoap/includes && chmod -R 755 /etc/liquidsoap
 
-# Create the Liquidsoap user
-RUN useradd -m liquidsoap
+# Switch over so we can install OPAM
 USER liquidsoap
 
 # Initialize OPAM and install Liquidsoap and asssociated packages
