@@ -38,8 +38,7 @@ RUN useradd -m liquidsoap
 RUN mkdir /var/log/liquidsoap
 RUN chown -R liquidsoap:liquidsoap /var/log/liquidsoap
 RUN chmod 766 /var/log/liquidsoap
-
-RUN mkdir /etc/liquidsoap && mkdir /etc/liquidsoap/includes && chmod -R 755 /etc/liquidsoap
+RUN mkdir /etc/liquidsoap && chmod -R 755 /etc/liquidsoap
 
 # Switch over so we can install OPAM
 USER liquidsoap
@@ -50,5 +49,9 @@ RUN opam update
 RUN eval `opam config env`
 RUN echo y | opam install ssl opus cry flac inotify lame mad ogg samplerate taglib vorbis xmlplaylist liquidsoap
 
-# We'll start Liquidsoap with a default file, which must be provided on container start
+# Expose ports for harbor connections and telnet server, respectively
+EXPOSE 8080
+EXPOSE 8011
+
+# We'll start Liquidsoap with a default file, which must be mounted from the host at runtime or other suitable provider
 ENTRYPOINT ["/home/liquidsoap/.opam/system/bin/liquidsoap", "/etc/liquidsoap/liquidsoap.liq"]
