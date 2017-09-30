@@ -5,6 +5,8 @@ ENV LIQUIDSOAP_SCRIPT /etc/liquidsoap/liquidsoap.liq
 # Set up dependenciess
 RUN apt-get -y update && \
   apt-get -y install \
+    dnsutils \
+    telnet \
     build-essential \
     wget \
     curl \
