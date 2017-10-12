@@ -3,7 +3,7 @@ FROM debian:stable-slim
 # Allows passing in a different script name, if desired.
 ENV LIQUIDSOAP_SCRIPT /etc/liquidsoap/liquidsoap.liq
 
-# Set up dependenciess
+# Set up dependencies
 RUN apt-get -y update && \
   apt-get -y install \
     dnsutils \
