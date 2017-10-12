@@ -18,7 +18,7 @@ RUN apt-get -y update && \
     libmad0-dev \
     libshout3-dev \
     libvorbis-dev \
-    fdkaac0 \
+    libfdk-aac-dev \
     libid3tag0-dev \
     libmad0-dev \
     libshout3-dev \
