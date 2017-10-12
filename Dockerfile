@@ -1,5 +1,6 @@
 FROM debian:stable-slim
 
+# Allows passing in a different script name, if desired.
 ENV LIQUIDSOAP_SCRIPT /etc/liquidsoap/liquidsoap.liq
 
 # Set up dependenciess
@@ -14,6 +15,7 @@ RUN apt-get -y update && \
     libmad0-dev \
     libshout3-dev \
     libvorbis-dev \
+    libfdk-aac-dev \
     libid3tag0-dev \
     libmad0-dev \
     libshout3-dev \
@@ -51,11 +53,11 @@ USER liquidsoap
 RUN echo n | opam init
 RUN opam update
 RUN eval `opam config env`
-RUN echo y | opam install ssl opus cry flac inotify lame mad ogg samplerate taglib vorbis xmlplaylist liquidsoap
+RUN echo y | opam install ssl opus cry flac inotify lame mad ogg fdkaac samplerate taglib vorbis xmlplaylist liquidsoap
 
 # Expose ports for harbor connections and telnet server, respectively
 EXPOSE 8080
 EXPOSE 8011
 
-# We'll start Liquidsoap with a default file, which must be mounted from the host at runtime or other suitable provider
+# Start Liquidsoap with a path to the script defined in the variable
 ENTRYPOINT /home/liquidsoap/.opam/system/bin/liquidsoap $LIQUIDSOAP_SCRIPT
