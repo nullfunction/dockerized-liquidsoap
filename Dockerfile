@@ -3,6 +3,9 @@ FROM debian:stable-slim
 # Allows passing in a different script name, if desired.
 ENV LIQUIDSOAP_SCRIPT /etc/liquidsoap/liquidsoap.liq
 
+# Add package repo
+RUN echo "http://deb.debian.org/debian stable main contrib non-free" > /etc/apt/sources.list
+
 # Set up dependencies
 RUN apt-get -y update && \
   apt-get -y install \
@@ -15,7 +18,7 @@ RUN apt-get -y update && \
     libmad0-dev \
     libshout3-dev \
     libvorbis-dev \
-    libfdk-aac0 \
+    fdkaac0 \
     libid3tag0-dev \
     libmad0-dev \
     libshout3-dev \
