@@ -4,7 +4,7 @@ FROM debian:stable-slim
 ENV LIQUIDSOAP_SCRIPT /etc/liquidsoap/liquidsoap.liq
 
 # Add package repo
-RUN echo "http://deb.debian.org/debian stable main contrib non-free" > /etc/apt/sources.list
+RUN echo "deb http://deb.debian.org/debian stable main contrib non-free" > /etc/apt/sources.list
 
 # Set up dependencies
 RUN apt-get -y update && \
