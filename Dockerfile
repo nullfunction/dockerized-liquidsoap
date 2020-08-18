@@ -48,6 +48,8 @@ RUN mkdir /var/log/liquidsoap
 RUN chown -R liquidsoap:liquidsoap /var/log/liquidsoap
 RUN chmod 766 /var/log/liquidsoap
 RUN mkdir /etc/liquidsoap && chmod -R 755 /etc/liquidsoap
+ADD launch.sh /home/liquidsoap/launch.sh
+RUN chmod 700 /home/liquidsoap/launch.sh
 
 # Switch over so we can install OPAM
 USER liquidsoap
@@ -62,5 +64,6 @@ RUN echo y | opam install ssl opus cry flac inotify lame mad ogg fdkaac samplera
 EXPOSE 8080
 EXPOSE 8011
 
-# Start Liquidsoap with a path to the script defined in the variable
-ENTRYPOINT /home/liquidsoap/.opam/system/bin/liquidsoap $LIQUIDSOAP_SCRIPT
+# Start Liquidsoap. If you have tasks you need to do before this happens, create a /home/liquidsoap/pre-launch.sh
+# file to have the contents executed first.
+ENTRYPOINT /home/liquidsoap/launch.sh
